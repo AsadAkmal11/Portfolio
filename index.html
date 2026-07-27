@@ -3,655 +3,446 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Muhammad Asad Akmal — AI/ML Engineer</title>
-<meta name="description" content="Muhammad Asad Akmal — B.S. AI @ GIKI. I build AI systems that ship: MLOps pipelines, FastAPI inference, full-stack deployment. Open to roles in Lahore, remote, and UAE."/>
-<link rel="icon" type="image/jpeg" href="assets/portfolio.jpg"/>
+<title>Muhammad Asad Akmal — Systems Builder</title>
+<meta name="description" content="Muhammad Asad Akmal — B.S. AI at GIKI. I build systems end-to-end: MLOps pipelines, chatbot state machines, FastAPI inference, full-stack deployment. Open to roles in Lahore, remote, and UAE."/>
+<meta property="og:title" content="Muhammad Asad Akmal — Systems Builder"/>
+<meta property="og:description" content="B.S. AI @ GIKI. MLOps, FastAPI, Flutter, Supabase."/>
+<link rel="icon" type="image/jpeg" href="assets/portfolio.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
+
+/* =========================================================
+   TOKENS
+   Six named values — no opacity tricks, no computed accents
+   ========================================================= */
 :root {
-  --bg:        #0a0a0f;
-  --bg-card:   #111118;
-  --bg-input:  #0d0d14;
-  --accent:    #7c3aed;
-  --accent-dim:rgba(124,58,237,0.35);
-  --cyan:      #06b6d4;
-  --cyan-dim:  rgba(6,182,212,0.35);
-  --text:      #f1f0ec;
-  --text-muted:#8a8898;
-  --text-dim:  #5c5a6a;
-  --border:    rgba(124,58,237,0.2);
-  --border-sub:rgba(255,255,255,0.06);
-  --font-head: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --bg:       #0f0e09;   /* WARM_VOID  — page background */
+  --surface:  #1b1a11;   /* SURFACE    — elevated panels */
+  --seam:     #2d2c1b;   /* SEAM       — structural borders */
+  --phosphor: #c49228;   /* PHOSPHOR   — amber, asset board only */
+  --vellum:   #ede8d8;   /* VELLUM     — primary text (15.78:1 on bg) */
+  --faded:    #8a8470;   /* FADED      — secondary text (5.17:1 on bg, 4.67:1 on surface) */
+
+  --mono:  "IBM Plex Mono", monospace;
+  --serif: "Lora", Georgia, serif;
+  --max:  1100px;
+  --pad:  1.5rem;
+  --nav-h: 52px;
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+/* =========================================================
+   RESET
+   ========================================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
-  font-family:var(--font-body);
-  font-size:16px;
-  line-height:1.7;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--vellum);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width:5px; }
-::-webkit-scrollbar-track { background:var(--bg); }
-::-webkit-scrollbar-thumb { background:var(--accent-dim); border-radius:3px; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--seam); border-radius: 0; }
 
-/* NAV */
+:focus-visible { outline: 2px solid var(--phosphor); outline-offset: 2px; }
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+.inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+section { scroll-margin-top: var(--nav-h); }
+
+/* Bracket tags — zero border-radius, bracket notation */
+.tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--faded);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.tag::before { content: "["; }
+.tag::after  { content: "]"; }
+
+/* Section divider: full-width border + left-aligned label */
+.sec-divider { border-top: 1px solid var(--seam); }
+.sec-lbl {
+  display: block;
+  padding: 0.6rem 0;
+  font-family: var(--mono);
+  font-size: 0.60rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faded);
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
 nav {
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:1000;
-  background:rgba(10,10,15,0.72);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--bg);
+  border-bottom: 1px solid var(--seam);
 }
 .nav-inner {
-  max-width:1140px;
-  margin:0 auto;
-  padding:0 1.5rem;
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  max-width: var(--max); margin: 0 auto; padding: 0 var(--pad);
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  font-family:var(--font-head);
-  font-size:1.05rem;
-  font-weight:600;
-  color:var(--text);
-  text-decoration:none;
-  letter-spacing:-0.02em;
+  font-family: var(--mono);
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--vellum); text-decoration: none;
 }
-.nav-logo span { color:var(--accent); }
-.nav-links {
-  display:flex;
-  gap:1.75rem;
-  list-style:none;
-}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
-  font-family:var(--font-mono);
-  font-size:0.7rem;
-  font-weight:500;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  color:var(--text-muted);
-  text-decoration:none;
-  transition:color 0.15s;
+  font-family: var(--mono);
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--faded); text-decoration: none;
+  transition: color 0.15s;
 }
-.nav-links a:hover,
-.nav-links a.active { color:var(--text); }
+.nav-links a:hover, .nav-links a.active { color: var(--vellum); }
 .nav-cta {
-  font-family:var(--font-mono);
-  font-size:0.7rem;
-  font-weight:600;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  background:var(--accent);
-  color:#fff;
-  padding:0.5rem 1.1rem;
-  border-radius:4px;
-  text-decoration:none;
-  transition:transform 0.15s, background 0.15s;
+  font-family: var(--mono);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--phosphor);
+  border: 1px solid var(--seam); padding: 0.38rem 0.85rem;
+  text-decoration: none; transition: border-color 0.15s;
 }
-.nav-cta:hover { transform:scale(1.04); background:#6d28d9; }
+.nav-cta:hover { border-color: var(--phosphor); }
 .hamburger {
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:4px;
+  display: none; flex-direction: column; gap: 4px;
+  background: none; border: none; cursor: pointer; padding: 4px;
 }
 .hamburger span {
-  display:block;
-  width:22px;
-  height:1.5px;
-  background:var(--text);
-  transition:0.25s;
+  display: block; width: 20px; height: 1px; background: var(--vellum);
+  transition: transform 0.2s, opacity 0.2s;
 }
-.hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity:0; }
-.hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.hamburger.open span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 
-/* HERO */
+/* =========================================================
+   HERO
+   ========================================================= */
 #hero {
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:90px 1.5rem 3rem;
-  position:relative;
-  overflow:hidden;
-}
-#neural-canvas {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:0;
+  padding: calc(var(--nav-h) + 3rem) var(--pad) 4rem;
+  min-height: 85vh;
+  display: flex; align-items: flex-start;
 }
 .hero-inner {
-  max-width:1140px;
-  margin:0 auto;
-  position:relative;
-  z-index:1;
-  width:100%;
+  max-width: var(--max); margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 330px; gap: 4rem; align-items: start;
 }
 .hero-eyebrow {
-  font-family:var(--font-mono);
-  font-size:0.72rem;
-  color:var(--cyan);
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  margin-bottom:1.25rem;
+  font-family: var(--mono);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--faded); margin-bottom: 1rem;
 }
 .hero-headline {
-  font-family:var(--font-head);
-  font-size:clamp(2.5rem, 6vw, 4.5rem);
-  font-weight:700;
-  line-height:1.08;
-  letter-spacing:-0.03em;
-  max-width:720px;
-  margin-bottom:1.25rem;
+  font-family: var(--mono);
+  font-size: clamp(2rem, 4.2vw, 3.1rem); font-weight: 700;
+  line-height: 1.12; letter-spacing: -0.02em;
+  color: var(--vellum); max-width: 540px; margin-bottom: 1.25rem;
 }
-.hero-sub {
-  font-size:1.05rem;
-  color:var(--text-muted);
-  max-width:560px;
-  margin-bottom:0.35rem;
+.hero-desc {
+  font-family: var(--serif); font-size: 0.97rem;
+  color: var(--faded); max-width: 460px; line-height: 1.75; margin-bottom: 1.25rem;
 }
-.hero-sub-line2 {
-  font-family:var(--font-mono);
-  font-size:0.85rem;
-  color:var(--text-dim);
-  margin-bottom:2rem;
-}
-
-/* Terminal typewriter */
-.terminal-block {
-  background:var(--bg-card);
-  border:1px solid var(--border-sub);
-  border-left:2px solid var(--accent);
-  border-radius:6px;
-  padding:1.25rem 1.5rem;
-  max-width:520px;
-  margin-bottom:3rem;
-  font-family:var(--font-mono);
-  font-size:0.82rem;
-  line-height:1.9;
-  color:var(--text-muted);
-}
-.terminal-line { min-height:1.5em; white-space:pre-wrap; word-break:break-word; }
-.terminal-line .prompt { color:var(--accent); }
-.terminal-line .ok { color:var(--cyan); }
-.terminal-line .check { color:#34d399; }
-.terminal-cursor {
-  display:inline-block;
-  width:8px;
-  height:1em;
-  background:var(--cyan);
-  vertical-align:text-bottom;
-  margin-left:1px;
-  animation:blink 1s step-end infinite;
-}
-@keyframes blink { 50% { opacity:0; } }
-
-/* Stats */
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin-bottom: 2.25rem; }
 .hero-stats {
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:1.5rem;
-  max-width:720px;
-  padding-top:0.5rem;
-  border-top:1px solid var(--border-sub);
+  display: flex; gap: 2.25rem;
+  padding-top: 1.4rem; border-top: 1px solid var(--seam);
 }
-.stat-item .stat-num {
-  font-family:var(--font-head);
-  font-size:1.6rem;
-  font-weight:600;
-  color:var(--accent);
-  line-height:1.2;
+.stat-val {
+  font-family: var(--mono); font-size: 1.5rem; font-weight: 700;
+  color: var(--vellum); line-height: 1; margin-bottom: 0.3rem;
 }
-.stat-item .stat-label {
-  font-family:var(--font-mono);
-  font-size:0.68rem;
-  color:var(--text-dim);
-  letter-spacing:0.04em;
-  margin-top:0.25rem;
+.stat-lbl {
+  font-family: var(--mono); font-size: 0.58rem;
+  color: var(--faded); letter-spacing: 0.06em; text-transform: uppercase;
 }
 
-/* SECTIONS */
-section { padding:5rem 1.5rem; }
-.section-inner { max-width:1140px; margin:0 auto; }
-.section-label {
-  font-family:var(--font-mono);
-  font-size:0.68rem;
-  color:var(--cyan);
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  margin-bottom:0.5rem;
+/* =========================================================
+   ASSET BOARD  —  Signature element
+   Styled after DirectFN / Bloomberg market data panels.
+   Amber used ONLY here; nowhere else on the page.
+   ========================================================= */
+.asset-board {
+  background: var(--surface);
+  border: 1px solid var(--seam);
+  padding: 1.1rem 1.2rem;
+  font-family: var(--mono);
 }
-.section-title {
-  font-family:var(--font-head);
-  font-size:36px;
-  font-weight:600;
-  letter-spacing:-0.02em;
-  margin-bottom:2.5rem;
+.board-hdr {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faded);
+  padding-bottom: 0.6rem; margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--seam);
 }
+.board-row {
+  display: grid; grid-template-columns: 52px 1fr auto;
+  gap: 0.5rem; align-items: baseline;
+  padding: 0.3rem 0; border-bottom: 1px solid var(--seam); font-size: 0.64rem;
+}
+.board-row:last-child { border-bottom: none; }
+.b-key {
+  color: var(--faded); font-size: 0.56rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.b-val { color: var(--vellum); line-height: 1.5; }
+.b-ind { color: var(--faded); font-size: 0.60rem; white-space: nowrap; text-align: right; }
+.b-ind.live { color: var(--phosphor); }
 
-.reveal {
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity 0.5s ease-out, transform 0.5s ease-out;
+/* =========================================================
+   STACK  — flat table, no cards
+   ========================================================= */
+.stack-body { padding-top: 0; padding-bottom: 3.5rem; }
+.stack-table { width: 100%; border-collapse: collapse; }
+.stack-table tr { border-bottom: 1px solid var(--seam); }
+.stack-table tr:last-child { border-bottom: none; }
+.stack-table td {
+  padding: 0.9rem 0; font-family: var(--mono); font-size: 0.70rem; vertical-align: top;
 }
-.reveal.visible { opacity:1; transform:translateY(0); }
+.s-cat {
+  width: 175px; font-weight: 700; color: var(--faded);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  font-size: 0.60rem; padding-right: 2rem; padding-top: 0.9rem; white-space: nowrap;
+}
+.s-items { color: var(--vellum); line-height: 2.1; }
+.s-items span::after { content: " \B7 "; color: var(--seam); }
+.s-items span:last-child::after { content: ""; }
 
-/* STACK */
-#stack { background:var(--bg); }
-.stack-grid {
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:1.25rem;
-}
-.stack-group {
-  background:var(--bg-card);
-  border:1px solid var(--border-sub);
-  border-radius:8px;
-  padding:1.5rem;
-}
-.stack-group-header {
-  display:flex;
-  align-items:center;
-  gap:0.6rem;
-  margin-bottom:1rem;
-}
-.stack-icon {
-  width:32px; height:32px;
-  border-radius:6px;
-  background:rgba(124,58,237,0.12);
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-}
-.stack-icon svg { width:16px; height:16px; stroke:var(--accent); fill:none; stroke-width:1.8; }
-.stack-group h3 {
-  font-family:var(--font-head);
-  font-size:0.95rem;
-  font-weight:600;
-}
-.skill-pills { display:flex; flex-wrap:wrap; gap:0.45rem; }
-.pill {
-  font-family:var(--font-mono);
-  font-size:0.72rem;
-  background:var(--bg);
-  border:1px solid var(--border);
-  color:var(--text-muted);
-  padding:0.3rem 0.65rem;
-  border-radius:4px;
-  transition:border-color 0.15s, transform 0.15s, color 0.15s;
-}
-.pill:hover {
-  border-color:var(--accent);
-  color:var(--text);
-  transform:translateY(-1px);
-}
+/* =========================================================
+   PROJECTS  — wide spec rows
+   ========================================================= */
+.projects-body { padding-top: 0; padding-bottom: 3.5rem; }
 
-/* PROJECTS */
-#projects { background:var(--bg-card); }
-.projects-layout { display:flex; flex-direction:column; gap:1.25rem; }
+.proj-row {
+  display: grid; grid-template-columns: 200px 1fr 215px;
+  gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid var(--seam); align-items: start;
+}
+.proj-row:last-child { border-bottom: none; }
 
-.proj-card {
-  background:var(--bg);
-  border:1px solid var(--border-sub);
-  border-radius:10px;
-  padding:1.75rem;
-  transition:transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  display:flex;
-  flex-direction:column;
-}
-.proj-card:hover {
-  transform:translateY(-4px);
-  border-color:var(--accent-dim);
-  box-shadow:0 12px 40px rgba(124,58,237,0.1);
-}
-.proj-card.featured {
-  flex-direction:row;
-  align-items:center;
-  gap:2.5rem;
-  padding:2rem 2.25rem;
-}
-.proj-card-body { flex:1; min-width:0; }
-.proj-visual {
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.proj-visual svg { display:block; }
 .proj-metric {
-  font-family:var(--font-head);
-  font-size:1.35rem;
-  font-weight:600;
-  color:var(--accent);
-  margin-bottom:0.5rem;
-  line-height:1.3;
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--faded); margin-bottom: 0.5rem; line-height: 1.45;
 }
-.proj-title {
-  font-family:var(--font-head);
-  font-size:22px;
-  font-weight:600;
-  margin-bottom:0.65rem;
-  letter-spacing:-0.01em;
+.proj-name {
+  font-family: var(--mono); font-size: 0.92rem; font-weight: 700;
+  color: var(--vellum); line-height: 1.3;
 }
 .proj-desc {
-  font-size:0.92rem;
-  color:var(--text-muted);
-  margin-bottom:1.1rem;
-  line-height:1.65;
+  font-family: var(--serif); font-size: 0.88rem;
+  color: var(--faded); line-height: 1.72;
 }
-.proj-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.1rem; }
-.proj-actions { display:flex; gap:0.6rem; flex-wrap:wrap; }
-.proj-btn {
-  font-family:var(--font-mono);
-  font-size:0.7rem;
-  font-weight:500;
-  letter-spacing:0.04em;
-  text-transform:uppercase;
-  color:var(--text-muted);
-  border:1px solid var(--border-sub);
-  padding:0.4rem 0.85rem;
-  border-radius:4px;
-  text-decoration:none;
-  transition:border-color 0.15s, color 0.15s;
-}
-.proj-btn:hover { border-color:var(--cyan); color:var(--cyan); }
-.proj-btn.primary { border-color:var(--accent-dim); color:var(--text); }
-.proj-btn.primary:hover { border-color:var(--accent); color:var(--accent); }
+.proj-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.8rem; }
+.proj-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.35rem 0.6rem; }
+.proj-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
 
-.projects-grid {
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:1.25rem;
+.p-btn {
+  font-family: var(--mono); font-size: 0.60rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--vellum); border: 1px solid var(--seam);
+  padding: 0.32rem 0.7rem; text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
 }
-.projects-grid .proj-card .proj-visual { margin-bottom:1rem; }
+.p-btn:hover { border-color: var(--vellum); }
+.p-btn.dim { color: var(--faded); }
+.p-btn.dim:hover { color: var(--vellum); border-color: var(--vellum); }
 
-/* Pipeline SVG pulse */
-@keyframes pulse-arrow {
-  0%, 100% { opacity:0.3; }
-  50% { opacity:1; }
-}
-.pipe-arrow { animation:pulse-arrow 2s ease-in-out infinite; }
-.pipe-arrow:nth-child(2) { animation-delay:0.3s; }
-.pipe-arrow:nth-child(3) { animation-delay:0.6s; }
-.pipe-arrow:nth-child(4) { animation-delay:0.9s; }
-.pipe-arrow:nth-child(5) { animation-delay:1.2s; }
-.pipe-arrow:nth-child(6) { animation-delay:1.5s; }
-
-/* Earlier work toggle */
-.earlier-toggle {
-  margin-top:0.5rem;
-  text-align:center;
-}
+.earlier-toggle-area { padding: 1.75rem 0 0; }
 .earlier-btn {
-  font-family:var(--font-mono);
-  font-size:0.75rem;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  color:var(--text-muted);
-  background:none;
-  border:1px solid var(--border-sub);
-  padding:0.65rem 1.5rem;
-  border-radius:4px;
-  cursor:pointer;
-  transition:border-color 0.15s, color 0.15s;
+  font-family: var(--mono); font-size: 0.60rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--faded); background: none; border: 1px solid var(--seam);
+  padding: 0.5rem 1.5rem; cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
 }
-.earlier-btn:hover { border-color:var(--accent); color:var(--text); }
-.earlier-work {
-  display:none;
-  margin-top:1.25rem;
-}
-.earlier-work.open { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.earlier-btn:hover { border-color: var(--vellum); color: var(--vellum); }
+.earlier-rows { display: none; }
+.earlier-rows.open { display: block; }
+.earlier-rows .proj-row:first-child { border-top: 1px solid var(--seam); margin-top: 1.5rem; }
 
-/* EXPERIENCE */
-#experience { background:var(--bg); }
-.timeline { position:relative; padding-left:2rem; }
-.timeline::before {
-  content:'';
-  position:absolute;
-  left:6px; top:8px; bottom:8px;
-  width:1px;
-  background:var(--border-sub);
+/* =========================================================
+   EXPERIENCE  — deployment log
+   No dot markers, no connecting line, no timeline
+   ISO date headers, + prefixed bullets
+   ========================================================= */
+.exp-body { padding-top: 0; padding-bottom: 3.5rem; }
+.exp-entry {
+  padding: 1.75rem 0; border-bottom: 1px solid var(--seam);
 }
-.tl-item {
-  position:relative;
-  padding-bottom:2.5rem;
+.exp-entry:last-child { border-bottom: none; }
+.exp-date {
+  font-family: var(--mono); font-size: 0.60rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--faded); margin-bottom: 0.45rem;
 }
-.tl-item:last-child { padding-bottom:0; }
-.tl-dot {
-  position:absolute;
-  left:-2rem;
-  top:6px;
-  width:13px; height:13px;
-  border-radius:50%;
-  background:var(--accent);
-  border:2px solid var(--bg);
-  box-shadow:0 0 0 3px rgba(124,58,237,0.2);
+.exp-company {
+  font-family: var(--mono); font-size: 0.95rem; font-weight: 700;
+  color: var(--vellum); margin-bottom: 0.15rem;
 }
-.tl-dates {
-  font-family:var(--font-mono);
-  font-size:0.72rem;
-  color:var(--text-dim);
-  letter-spacing:0.04em;
-  margin-bottom:0.35rem;
+.exp-role {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--faded); letter-spacing: 0.04em; margin-bottom: 0.9rem;
 }
-.tl-company {
-  font-family:var(--font-head);
-  font-size:1.1rem;
-  font-weight:600;
-  margin-bottom:0.2rem;
+.exp-bullets { list-style: none; }
+.exp-bullets li {
+  font-family: var(--serif); font-size: 0.88rem;
+  color: var(--faded); line-height: 1.72;
+  padding: 0.18rem 0 0.18rem 1.6rem; position: relative;
 }
-.tl-role {
-  font-family:var(--font-mono);
-  font-size:0.8rem;
-  color:var(--cyan);
-  margin-bottom:0.85rem;
-}
-.tl-item ul { list-style:none; }
-.tl-item li {
-  font-size:0.92rem;
-  color:var(--text-muted);
-  padding:0.3rem 0 0.3rem 1rem;
-  position:relative;
-  line-height:1.65;
-}
-.tl-item li::before {
-  content:'';
-  position:absolute;
-  left:0; top:0.75em;
-  width:4px; height:4px;
-  border-radius:50%;
-  background:var(--accent);
+.exp-bullets li::before {
+  content: "+";
+  position: absolute; left: 0;
+  font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+  color: var(--vellum); line-height: 1.72;
 }
 
-/* EDUCATION */
-#education { background:var(--bg-card); }
-.edu-card {
-  background:var(--bg);
-  border:1px solid var(--border-sub);
-  border-radius:10px;
-  padding:2rem;
-  max-width:640px;
-}
+/* =========================================================
+   EDUCATION
+   ========================================================= */
+.edu-body { padding-top: 0; padding-bottom: 3.5rem; }
+.edu-block { padding: 1.75rem 0; border-bottom: 1px solid var(--seam); }
+.edu-block:last-child { border-bottom: none; }
 .edu-degree {
-  font-family:var(--font-head);
-  font-size:1.25rem;
-  font-weight:600;
-  margin-bottom:0.25rem;
+  font-family: var(--mono); font-size: 0.97rem; font-weight: 700;
+  color: var(--vellum); margin-bottom: 0.2rem;
 }
 .edu-school {
-  font-size:0.95rem;
-  color:var(--text-muted);
-  margin-bottom:0.5rem;
+  font-family: var(--serif); font-size: 0.9rem;
+  color: var(--faded); margin-bottom: 0.2rem;
 }
-.edu-cgpa {
-  font-family:var(--font-mono);
-  font-size:0.85rem;
-  color:var(--accent);
-  margin-bottom:1.25rem;
+.edu-meta {
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--faded); margin-bottom: 0.85rem;
 }
-.edu-courses { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.edu-courses { display: flex; flex-wrap: wrap; gap: 0.35rem 0.85rem; margin-bottom: 0.5rem; }
 .edu-note {
-  margin-top:1.5rem;
-  font-size:0.85rem;
-  color:var(--text-dim);
-  font-family:var(--font-mono);
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--faded); margin-top: 0.75rem;
+  padding-top: 0.75rem; border-top: 1px solid var(--seam);
 }
 
-/* CONTACT */
-#contact { background:var(--bg); }
+/* =========================================================
+   CONTACT
+   ========================================================= */
+.contact-body { padding-bottom: 4rem; }
 .contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3rem;
-  align-items:start;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; align-items: start; padding-top: 1.75rem;
 }
-.contact-text {
-  font-size:1rem;
-  color:var(--text-muted);
-  line-height:1.75;
-  margin-bottom:2rem;
-  max-width:420px;
+.contact-blurb {
+  font-family: var(--serif); font-size: 0.92rem;
+  color: var(--faded); line-height: 1.75; margin-bottom: 1.75rem;
 }
-.social-row { display:flex; gap:0.75rem; }
+.social-row { display: flex; gap: 0.5rem; }
 .social-btn {
-  width:44px; height:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid var(--border-sub);
-  border-radius:8px;
-  color:var(--text-muted);
-  text-decoration:none;
-  transition:border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--seam); color: var(--faded); text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
 }
-.social-btn svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.8; }
-.social-btn:hover {
-  border-color:var(--cyan);
-  color:var(--cyan);
-  box-shadow:0 0 20px rgba(6,182,212,0.15);
-}
+.social-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.social-btn:hover { border-color: var(--vellum); color: var(--vellum); }
 .contact-form {
-  background:var(--bg-card);
-  border:1px solid var(--border-sub);
-  border-radius:10px;
-  padding:1.75rem;
+  background: var(--surface); border: 1px solid var(--seam); padding: 1.5rem;
 }
-.form-group { margin-bottom:1.1rem; }
-.form-group input,
-.form-group textarea {
-  width:100%;
-  background:var(--bg-input);
-  border:1px solid var(--border-sub);
-  border-radius:6px;
-  padding:0.75rem 1rem;
-  color:var(--text);
-  font-family:var(--font-mono);
-  font-size:0.82rem;
-  outline:none;
-  transition:border-color 0.15s, box-shadow 0.15s;
+.form-group { margin-bottom: 0.9rem; }
+.form-group input, .form-group textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--seam);
+  padding: 0.6rem 0.85rem; color: var(--vellum);
+  font-family: var(--mono); font-size: 0.70rem;
+  outline: none; transition: border-color 0.15s;
 }
 .form-group input::placeholder,
-.form-group textarea::placeholder { color:var(--text-dim); }
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(6,182,212,0.12);
-}
-.form-group textarea { resize:vertical; min-height:120px; }
+.form-group textarea::placeholder { color: var(--faded); }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--vellum); }
+.form-group textarea { resize: vertical; min-height: 100px; }
 .form-submit {
-  width:100%;
-  font-family:var(--font-mono);
-  font-size:0.75rem;
-  font-weight:600;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  padding:0.85rem;
-  cursor:pointer;
-  transition:background 0.15s, transform 0.15s;
+  width: 100%; font-family: var(--mono); font-size: 0.60rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: none; color: var(--vellum); border: 1px solid var(--seam);
+  padding: 0.75rem; cursor: pointer; transition: border-color 0.15s;
 }
-.form-submit:hover { background:#6d28d9; transform:scale(1.01); }
+.form-submit:hover { border-color: var(--vellum); }
 .form-msg {
-  margin-top:0.75rem;
-  font-family:var(--font-mono);
-  font-size:0.75rem;
-  color:var(--cyan);
-  display:none;
+  display: none; font-family: var(--mono); font-size: 0.60rem;
+  color: var(--faded); margin-top: 0.6rem;
 }
 
-/* FOOTER */
-footer {
-  border-top:1px solid var(--border-sub);
-  padding:2rem 1.5rem;
-  text-align:center;
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer { border-top: 1px solid var(--seam); padding: 1.25rem var(--pad); }
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
 }
-footer p {
-  font-family:var(--font-mono);
-  font-size:0.72rem;
-  color:var(--text-dim);
-  letter-spacing:0.04em;
-}
+footer p { font-family: var(--mono); font-size: 0.58rem; color: var(--faded); letter-spacing: 0.06em; }
 
-/* RESPONSIVE */
-@media (max-width:900px) {
-  .proj-card.featured { flex-direction:column; }
-  .proj-card.featured .proj-visual { order:-1; width:100%; }
-  .stack-grid { grid-template-columns:1fr; }
-  .projects-grid { grid-template-columns:1fr; }
-  .earlier-work.open { grid-template-columns:1fr; }
-  .hero-stats { grid-template-columns:repeat(2, 1fr); }
-  .contact-grid { grid-template-columns:1fr; gap:2rem; }
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .asset-board { max-width: 460px; }
+  .proj-row { grid-template-columns: 1fr; gap: 1rem; }
+  .proj-right { align-items: flex-start; }
+  .proj-tags { justify-content: flex-start; }
+  .proj-actions { justify-content: flex-start; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .nav-links {
-    display:none;
-    flex-direction:column;
-    gap:0;
-    position:fixed;
-    top:60px; left:0; right:0;
-    background:rgba(10,10,15,0.96);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border-sub);
-    padding:0.75rem 0;
+    display: none; flex-direction: column;
+    position: fixed; top: var(--nav-h); left: 0; right: 0;
+    background: var(--bg); border-bottom: 1px solid var(--seam);
+    padding: 0.5rem 0; gap: 0;
   }
-  .nav-links.open { display:flex; }
-  .nav-links a { display:block; padding:0.75rem 1.5rem; }
-  .nav-cta { display:none; }
-  .hamburger { display:flex; }
-  .section-title { font-size:28px; }
+  .nav-links.open { display: flex; }
+  .nav-links a { display: block; padding: 0.65rem var(--pad); }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .s-cat { width: 120px; }
+}
+@media (max-width: 560px) {
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .stack-table, .stack-table tbody, .stack-table tr, .stack-table td { display: block; }
+  .s-cat { width: 100%; padding-right: 0; padding-bottom: 0.15rem; }
+  .board-row { grid-template-columns: 44px 1fr; font-size: 0.60rem; }
+  .b-ind { display: none; }
+  .b-ind.live { display: inline; font-size: 0.58rem; }
+  .asset-board { overflow: hidden; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Asad<span>.</span>Akmal</a>
+    <a href="#hero" class="nav-logo">ASAD AKMAL</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#stack">Stack</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -660,463 +451,380 @@ footer p {
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Hire Me</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
-  <canvas id="neural-canvas" aria-hidden="true"></canvas>
-  <div class="hero-inner">
-    <p class="hero-eyebrow">Muhammad Asad Akmal</p>
-    <h1 class="hero-headline">I build AI systems that ship.</h1>
-    <p class="hero-sub">MLOps pipelines · FastAPI inference · Full-stack deployment</p>
-    <p class="hero-sub-line2">B.S. AI @ GIKI · Open to roles in Lahore / Remote / UAE</p>
+  <div class="hero-inner inner">
 
-    <div class="terminal-block" id="terminal">
-      <div class="terminal-line" id="term-line-0"></div>
-      <div class="terminal-line" id="term-line-1"></div>
-      <div class="terminal-line" id="term-line-2"></div>
-      <div class="terminal-line" id="term-line-3"></div>
+    <div>
+      <p class="hero-eyebrow">Muhammad Asad Akmal</p>
+      <h1 class="hero-headline">I build AI systems that ship.</h1>
+      <p class="hero-desc">MLOps pipelines &middot; FastAPI inference &middot; Full-stack deployment.
+        B.S. AI @ GIKI &mdash; open to roles in Lahore, remote, and UAE.</p>
+      <div class="hero-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">React</span>
+        <span class="tag">Flutter</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Docker</span>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">200+</div>
+          <div class="stat-lbl">users served (ATTENDIFY)</div>
+        </div>
+        <div>
+          <div class="stat-val">4</div>
+          <div class="stat-lbl">ML models deployed</div>
+        </div>
+        <div>
+          <div class="stat-val">3.08</div>
+          <div class="stat-lbl">GPA @ GIKI</div>
+        </div>
+      </div>
     </div>
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">200+</div>
-        <div class="stat-label">users served (ATTENDIFY)</div>
+    <!-- SIGNATURE ELEMENT: Asset Board -->
+    <aside class="asset-board" aria-label="Current status">
+      <div class="board-hdr">// CURRENT STATUS</div>
+      <div class="board-row">
+        <span class="b-key">ROLE</span>
+        <span class="b-val">INTERNETWORKS / FSE</span>
+        <span class="b-ind live">&#9679; LIVE</span>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">4</div>
-        <div class="stat-label">ML models deployed</div>
+      <div class="board-row">
+        <span class="b-key">STACK</span>
+        <span class="b-val">PY &middot; FLASK &middot; REACT &middot; DART</span>
+        <span class="b-ind">&#9472;&#9472;&#9472;&#9472;</span>
       </div>
-      <!-- <div class="stat-item">
-        <div class="stat-num">8+</div>
-        <div class="stat-label">projects</div>
-      </div> -->
-      <div class="stat-item">
-        <div class="stat-num">3.08</div>
-        <div class="stat-label">GPA @ GIKI</div>
+      <div class="board-row">
+        <span class="b-key">DOMAIN</span>
+        <span class="b-val">ML &middot; BACKEND &middot; MOBILE</span>
+        <span class="b-ind">&#9472;&#9472;&#9472;&#9472;</span>
       </div>
-    </div>
+      <div class="board-row">
+        <span class="b-key">BASE</span>
+        <span class="b-val">LAHORE, PAKISTAN</span>
+        <span class="b-ind">&#9472;&#9472;&#9472;&#9472;</span>
+      </div>
+      <div class="board-row">
+        <span class="b-key">OPEN</span>
+        <span class="b-val">ROLES IN PKR / REMOTE</span>
+        <span class="b-ind">&#9670; JUL 26</span>
+      </div>
+    </aside>
+
   </div>
 </section>
 
+<!-- STACK -->
 <section id="stack">
-  <div class="section-inner reveal">
-    <p class="section-label">Capabilities</p>
-    <h2 class="section-title">Arsenal</h2>
-    <div class="stack-grid">
-      <div class="stack-group">
-        <div class="stack-group-header">
-          <div class="stack-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-          <h3>AI / ML</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="pill">Python</span><span class="pill">Scikit-learn</span><span class="pill">XGBoost</span>
-          <span class="pill">KNN</span><span class="pill">SVM</span><span class="pill">NumPy</span>
-          <span class="pill">Pandas</span><span class="pill">Matplotlib</span><span class="pill">OpenAI API</span>
-          <span class="pill">LangChain</span><span class="pill">OpenAI Whisper (STT)</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-header">
-          <div class="stack-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <h3>MLOps &amp; DevOps</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="pill">Docker</span><span class="pill">GitHub Actions</span><span class="pill">Prefect</span>
-          <span class="pill">DeepChecks</span><span class="pill">joblib</span><span class="pill">CI/CD</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-header">
-          <div class="stack-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <h3>Backend</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="pill">FastAPI</span><span class="pill">Flask</span><span class="pill">Node.js</span><span class="pill">Express.js</span>
-          <span class="pill">REST APIs</span><span class="pill">JWT</span><span class="pill">Firebase Auth</span>
-          <span class="pill">WebSockets</span><span class="pill">OAuth2</span><span class="pill">Stripe API</span><span class="pill">Row-Level Security (RLS)</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="stack-group-header">
-          <div class="stack-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-          <h3>Frontend, Mobile &amp; DB</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="pill">React.js</span><span class="pill">Next.js</span><span class="pill">Vite</span>
-          <span class="pill">Flutter</span><span class="pill">Dart</span>
-          <span class="pill">Streamlit</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span>
-          <span class="pill">Firebase</span><span class="pill">Supabase</span>
-        </div>
-      </div>
-    </div>
+  <div class="sec-divider inner"><span class="sec-lbl">01 &middot; Arsenal</span></div>
+  <div class="inner stack-body">
+    <table class="stack-table">
+      <tbody>
+        <tr>
+          <td class="s-cat">AI&nbsp;/ ML</td>
+          <td class="s-items">
+            <span>Python</span><span>Scikit-learn</span><span>XGBoost</span><span>KNN</span>
+            <span>SVM</span><span>NumPy</span><span>Pandas</span><span>Matplotlib</span>
+            <span>OpenAI API</span><span>LangChain</span><span>OpenAI Whisper (STT)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="s-cat">MLOps&nbsp;&amp;&nbsp;DevOps</td>
+          <td class="s-items">
+            <span>Docker</span><span>GitHub Actions</span><span>Prefect</span>
+            <span>DeepChecks</span><span>joblib</span><span>CI/CD</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="s-cat">Backend</td>
+          <td class="s-items">
+            <span>FastAPI</span><span>Flask</span><span>Node.js</span><span>Express.js</span>
+            <span>REST APIs</span><span>JWT</span><span>Firebase Auth</span>
+            <span>WebSockets</span><span>OAuth2</span><span>Stripe API</span>
+            <span>Row-Level Security (RLS)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="s-cat">Frontend,&nbsp;Mobile&nbsp;&amp;&nbsp;DB</td>
+          <td class="s-items">
+            <span>React.js</span><span>Next.js</span><span>Vite</span>
+            <span>Flutter</span><span>Dart</span><span>Streamlit</span>
+            <span>PostgreSQL</span><span>MySQL</span><span>Firebase</span><span>Supabase</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
-  <div class="section-inner reveal">
-    <p class="section-label">Case Studies</p>
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-layout">
+  <div class="sec-divider inner"><span class="sec-lbl">02 &middot; Projects</span></div>
+  <div class="inner projects-body">
 
-      <!-- FEATURED: MLOps -->
-      <article class="proj-card featured">
-        <div class="proj-card-body">
-          <div class="proj-metric">60% faster deployment</div>
-          <h3 class="proj-title">End-to-End MLOps Pipeline</h3>
-          <p class="proj-desc">Full crop/agri predictive analytics pipeline — four FastAPI inference endpoints, Prefect-orchestrated training, DeepChecks validation, Docker Compose deployment, and GitHub Actions CI/CD with lint, test, and image push.</p>
-          <div class="proj-tags">
-            <span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">React + Vite</span>
-            <span class="pill">Docker</span><span class="pill">Prefect</span><span class="pill">DeepChecks</span><span class="pill">GitHub Actions</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://github.com/ZawarFahim/End-to-End-MLOps-Pipeline-for-Predictive-Analytics-Simulation-System-for-Decision-Making" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
-          </div>
-        </div>
-        <div class="proj-visual">
-          <svg width="340" height="120" viewBox="0 0 340 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#7c3aed"/></marker>
-            </defs>
-            <g font-family="JetBrains Mono, monospace" font-size="9" fill="#8a8898" text-anchor="middle">
-              <rect x="4" y="44" width="40" height="32" rx="4" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <text x="24" y="64">Data</text>
-              <line class="pipe-arrow" x1="44" y1="60" x2="58" y2="60" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <rect x="58" y="44" width="44" height="32" rx="4" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <text x="80" y="64">Prefect</text>
-              <line class="pipe-arrow" x1="102" y1="60" x2="116" y2="60" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <rect x="116" y="44" width="40" height="32" rx="4" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <text x="136" y="64">Model</text>
-              <line class="pipe-arrow" x1="156" y1="60" x2="170" y2="60" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <rect x="170" y="36" width="52" height="32" rx="4" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <text x="196" y="56">DeepChecks</text>
-              <line class="pipe-arrow" x1="196" y1="68" x2="196" y2="82" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <rect x="170" y="82" width="52" height="28" rx="4" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <text x="196" y="100">FastAPI</text>
-              <line class="pipe-arrow" x1="222" y1="96" x2="236" y2="96" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <rect x="236" y="82" width="44" height="28" rx="4" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <text x="258" y="100">Docker</text>
-              <line class="pipe-arrow" x1="280" y1="96" x2="294" y2="96" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <rect x="294" y="82" width="40" height="28" rx="4" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <text x="314" y="100">CI/CD</text>
-            </g>
-          </svg>
-        </div>
-      </article>
-
-      <div class="projects-grid">
-
-        <!-- RANG ADDA -->
-        <article class="proj-card">
-          <div class="proj-visual">
-            <svg width="200" height="100" viewBox="0 0 200 100" fill="none" aria-hidden="true">
-              <!-- Stacked playing cards -->
-              <rect x="22" y="22" width="46" height="62" rx="5" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <rect x="32" y="16" width="46" height="62" rx="5" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <rect x="42" y="10" width="46" height="62" rx="5" stroke="#7c3aed" stroke-width="1.2" fill="#0d0d14"/>
-              <text x="65" y="48" font-family="serif" font-size="22" fill="#7c3aed" text-anchor="middle" opacity="0.85">&#9824;</text>
-              <text x="48" y="24" font-family="JetBrains Mono, monospace" font-size="8" fill="#7c3aed" opacity="0.7">A</text>
-              <text x="80" y="67" font-family="JetBrains Mono, monospace" font-size="8" fill="#7c3aed" opacity="0.7">A</text>
-              <!-- Bot AI panel -->
-              <rect x="110" y="22" width="72" height="58" rx="4" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <text x="146" y="38" font-family="JetBrains Mono, monospace" font-size="6" fill="#06b6d4" text-anchor="middle">Bot AI</text>
-              <line x1="118" y1="43" x2="178" y2="43" stroke="#5c5a6a" stroke-width="0.5"/>
-              <text x="146" y="55" font-family="JetBrains Mono, monospace" font-size="6" fill="#8a8898" text-anchor="middle">PIMC search</text>
-              <text x="146" y="65" font-family="JetBrains Mono, monospace" font-size="6" fill="#8a8898" text-anchor="middle">Bayesian bluff</text>
-              <circle cx="146" cy="74" r="3" fill="#4ade80" opacity="0.8"/>
-              <text x="155" y="77" font-family="JetBrains Mono, monospace" font-size="5" fill="#4ade80">neon UI</text>
-            </svg>
-          </div>
-          <div class="proj-metric">Flutter mobile game · 3-tier bot AI</div>
-          <h3 class="proj-title">Rang Adda — Digital Pakistani Card Games</h3>
-          <p class="proj-desc">Co-developed a Flutter-based mobile app digitizing popular Pakistani card games (Thulla, Rang, Bluff). Features a three-tier bot AI combining Perfect Information Monte Carlo (PIMC) search for trick-taking play and Bayesian reasoning for Bluff, with a neon-green UI, deployed via Firebase Hosting.</p>
-          <div class="proj-tags">
-            <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">Firebase</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://rangadda-57efc.web.app/" target="_blank" rel="noopener noreferrer" class="proj-btn primary">Live Demo</a>
-            <a href="https://github.com/marbo786/Rang_Adda" target="_blank" rel="noopener noreferrer" class="proj-btn">GitHub (Partner's Repo)</a>
-          </div>
-        </article>
-
-        <!-- PERSONAL WORKSPACE DASHBOARD -->
-        <article class="proj-card">
-          <div class="proj-visual">
-            <svg width="200" height="100" viewBox="0 0 200 100" fill="none" aria-hidden="true">
-              <!-- Dashboard window -->
-              <rect x="18" y="12" width="164" height="76" rx="5" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <!-- Title bar -->
-              <rect x="18" y="12" width="164" height="16" rx="5" fill="#0d0d14"/>
-              <rect x="18" y="20" width="164" height="8" fill="#0d0d14"/>
-              <circle cx="30" cy="20" r="3" fill="#7c3aed" opacity="0.5"/>
-              <circle cx="40" cy="20" r="3" fill="#06b6d4" opacity="0.5"/>
-              <text x="100" y="24" font-family="JetBrains Mono, monospace" font-size="5.5" fill="#5c5a6a" text-anchor="middle">workspace.dashboard</text>
-              <!-- GitHub widget -->
-              <rect x="26" y="34" width="68" height="24" rx="3" stroke="#06b6d4" stroke-width="0.8" fill="#0d0d14"/>
-              <text x="60" y="45" font-family="JetBrains Mono, monospace" font-size="6" fill="#06b6d4" text-anchor="middle">GitHub</text>
-              <text x="60" y="54" font-family="JetBrains Mono, monospace" font-size="5" fill="#5c5a6a" text-anchor="middle">OAuth2</text>
-              <!-- Gmail widget -->
-              <rect x="106" y="34" width="68" height="24" rx="3" stroke="#7c3aed" stroke-width="0.8" fill="#0d0d14"/>
-              <text x="140" y="45" font-family="JetBrains Mono, monospace" font-size="6" fill="#7c3aed" text-anchor="middle">Gmail</text>
-              <text x="140" y="54" font-family="JetBrains Mono, monospace" font-size="5" fill="#5c5a6a" text-anchor="middle">OAuth2</text>
-              <!-- Bottom row -->
-              <rect x="26" y="64" width="68" height="16" rx="3" stroke="#7c3aed" stroke-width="0.8" fill="#0d0d14"/>
-              <text x="60" y="74" font-family="JetBrains Mono, monospace" font-size="5" fill="#8a8898" text-anchor="middle">Supabase · Vercel</text>
-              <rect x="106" y="64" width="68" height="16" rx="3" stroke="#06b6d4" stroke-width="0.8" fill="#0d0d14"/>
-              <text x="140" y="74" font-family="JetBrains Mono, monospace" font-size="5" fill="#8a8898" text-anchor="middle">Fernet Encrypted</text>
-            </svg>
-          </div>
-          <div class="proj-metric">OAuth2 productivity dashboard</div>
-          <h3 class="proj-title">Personal Workspace Dashboard</h3>
-          <p class="proj-desc">Full-stack productivity dashboard integrating GitHub and Gmail via OAuth2, with Fernet-encrypted token storage, persistent session auth, and a Supabase-hosted PostgreSQL backend (migrated from SQLite for serverless deployment on Vercel). Includes dark/light theming and a dedicated landing page.</p>
-          <div class="proj-tags">
-            <span class="pill">FastAPI</span><span class="pill">React</span><span class="pill">Supabase (PostgreSQL)</span><span class="pill">OAuth2</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://personal-workspace-bay.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-btn primary">Live Demo</a>
-            <a href="https://github.com/huzaifaarif-7/personal-workspace" target="_blank" rel="noopener noreferrer" class="proj-btn">GitHub</a>
-          </div>
-        </article>
-
-        <!-- ATTENDIFY -->
-        <article class="proj-card">
-          <div class="proj-visual">
-            <svg width="200" height="100" viewBox="0 0 200 100" fill="none" aria-hidden="true">
-              <rect x="80" y="8" width="40" height="22" rx="3" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <text x="100" y="23" font-family="JetBrains Mono, monospace" font-size="8" fill="#8a8898" text-anchor="middle">Admin</text>
-              <line x1="100" y1="30" x2="100" y2="38" stroke="#7c3aed" stroke-width="1"/>
-              <line x1="50" y1="38" x2="150" y2="38" stroke="#7c3aed" stroke-width="1"/>
-              <line x1="50" y1="38" x2="50" y2="46" stroke="#7c3aed" stroke-width="1"/>
-              <line x1="150" y1="38" x2="150" y2="46" stroke="#7c3aed" stroke-width="1"/>
-              <rect x="30" y="46" width="40" height="22" rx="3" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <text x="50" y="61" font-family="JetBrains Mono, monospace" font-size="8" fill="#8a8898" text-anchor="middle">Faculty</text>
-              <rect x="130" y="46" width="40" height="22" rx="3" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <text x="150" y="61" font-family="JetBrains Mono, monospace" font-size="8" fill="#8a8898" text-anchor="middle">Faculty</text>
-              <line x1="50" y1="68" x2="50" y2="74" stroke="#7c3aed" stroke-width="1"/>
-              <line x1="150" y1="68" x2="150" y2="74" stroke="#7c3aed" stroke-width="1"/>
-              <rect x="20" y="74" width="28" height="18" rx="2" stroke="#7c3aed" stroke-width="0.8" fill="#111118" opacity="0.8"/>
-              <rect x="52" y="74" width="28" height="18" rx="2" stroke="#7c3aed" stroke-width="0.8" fill="#111118" opacity="0.8"/>
-              <rect x="120" y="74" width="28" height="18" rx="2" stroke="#7c3aed" stroke-width="0.8" fill="#111118" opacity="0.8"/>
-              <rect x="152" y="74" width="28" height="18" rx="2" stroke="#7c3aed" stroke-width="0.8" fill="#111118" opacity="0.8"/>
-              <text x="34" y="86" font-family="JetBrains Mono, monospace" font-size="6" fill="#5c5a6a" text-anchor="middle">Stu</text>
-              <text x="66" y="86" font-family="JetBrains Mono, monospace" font-size="6" fill="#5c5a6a" text-anchor="middle">Stu</text>
-              <text x="134" y="86" font-family="JetBrains Mono, monospace" font-size="6" fill="#5c5a6a" text-anchor="middle">Stu</text>
-              <text x="166" y="86" font-family="JetBrains Mono, monospace" font-size="6" fill="#5c5a6a" text-anchor="middle">Stu</text>
-            </svg>
-          </div>
-          <div class="proj-metric">200+ users · 70% time saved</div>
-          <h3 class="proj-title">ATTENDIFY — Smart Attendance System</h3>
-          <p class="proj-desc">University attendance platform with role-based access for Admin, Faculty, and Students. ERP panel with bulk Excel import, Firebase sync, audit logs, and bcrypt-secured PostgreSQL backend.</p>
-          <div class="proj-tags">
-            <span class="pill">Python</span><span class="pill">Tkinter</span><span class="pill">PostgreSQL</span>
-            <span class="pill">Firebase</span><span class="pill">Pandas</span><span class="pill">bcrypt</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://github.com/ZawarFahim/Smart-Attendance-System" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
-          </div>
-        </article>
-
-        <!-- PSX -->
-        <article class="proj-card">
-          <div class="proj-visual">
-            <svg width="200" height="100" viewBox="0 0 200 100" fill="none" aria-hidden="true">
-              <line x1="20" y1="85" x2="180" y2="85" stroke="#5c5a6a" stroke-width="0.5"/>
-              <rect x="35" y="55" width="8" height="30" fill="#7c3aed" opacity="0.7"/>
-              <line x1="39" y1="55" x2="39" y2="48" stroke="#7c3aed" stroke-width="1.5"/>
-              <line x1="36" y1="48" x2="42" y2="48" stroke="#7c3aed" stroke-width="1.5"/>
-              <rect x="55" y="40" width="8" height="45" fill="#06b6d4" opacity="0.6"/>
-              <line x1="59" y1="40" x2="59" y2="32" stroke="#06b6d4" stroke-width="1.5"/>
-              <line x1="56" y1="32" x2="62" y2="32" stroke="#06b6d4" stroke-width="1.5"/>
-              <rect x="75" y="50" width="8" height="35" fill="#7c3aed" opacity="0.5"/>
-              <line x1="79" y1="50" x2="79" y2="58" stroke="#7c3aed" stroke-width="1.5"/>
-              <line x1="76" y1="58" x2="82" y2="58" stroke="#7c3aed" stroke-width="1.5"/>
-              <rect x="95" y="35" width="8" height="50" fill="#06b6d4" opacity="0.7"/>
-              <line x1="99" y1="35" x2="99" y2="28" stroke="#06b6d4" stroke-width="1.5"/>
-              <line x1="96" y1="28" x2="102" y2="28" stroke="#06b6d4" stroke-width="1.5"/>
-              <rect x="115" y="45" width="8" height="40" fill="#7c3aed" opacity="0.6"/>
-              <line x1="119" y1="45" x2="119" y2="52" stroke="#7c3aed" stroke-width="1.5"/>
-              <line x1="116" y1="52" x2="122" y2="52" stroke="#7c3aed" stroke-width="1.5"/>
-              <rect x="135" y="30" width="8" height="55" fill="#06b6d4" opacity="0.5"/>
-              <line x1="139" y1="30" x2="139" y2="22" stroke="#06b6d4" stroke-width="1.5"/>
-              <line x1="136" y1="22" x2="142" y2="22" stroke="#06b6d4" stroke-width="1.5"/>
-              <rect x="155" y="48" width="8" height="37" fill="#7c3aed" opacity="0.7"/>
-              <line x1="159" y1="48" x2="159" y2="55" stroke="#7c3aed" stroke-width="1.5"/>
-              <line x1="156" y1="55" x2="162" y2="55" stroke="#7c3aed" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="proj-metric">5 terminal features shipped</div>
-          <h3 class="proj-title">PSX Trade Hub</h3>
-          <p class="proj-desc">Desktop-style stock trading platform with CSV upload, market watch, and portfolio management. Dynamic screen rendering modeled on real financial terminals from DirectFN internship experience.</p>
-          <div class="proj-tags">
-            <span class="pill">JavaScript</span><span class="pill">React</span><span class="pill">CSV Parsing</span><span class="pill">Finance</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://github.com/AsadAkmal11/psxtradehub" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
-          </div>
-        </article>
-
-        <!-- Phone Dash -->
-        <article class="proj-card">
-          <div class="proj-visual">
-            <svg width="200" height="100" viewBox="0 0 200 100" fill="none" aria-hidden="true">
-              <line x1="25" y1="80" x2="175" y2="80" stroke="#5c5a6a" stroke-width="0.5"/>
-              <line x1="25" y1="80" x2="25" y2="20" stroke="#5c5a6a" stroke-width="0.5"/>
-              <circle cx="55" cy="62" r="4" fill="#7c3aed" opacity="0.7"/>
-              <circle cx="78" cy="48" r="4" fill="#06b6d4" opacity="0.7"/>
-              <circle cx="95" cy="55" r="4" fill="#7c3aed" opacity="0.6"/>
-              <circle cx="110" cy="38" r="4" fill="#06b6d4" opacity="0.8"/>
-              <circle cx="130" cy="42" r="4" fill="#7c3aed" opacity="0.5"/>
-              <circle cx="145" cy="30" r="4" fill="#06b6d4" opacity="0.7"/>
-              <circle cx="160" cy="35" r="4" fill="#7c3aed" opacity="0.6"/>
-              <circle cx="70" cy="70" r="3" fill="#7c3aed" opacity="0.4"/>
-              <circle cx="120" cy="65" r="3" fill="#06b6d4" opacity="0.5"/>
-              <circle cx="150" cy="58" r="3" fill="#7c3aed" opacity="0.4"/>
-            </svg>
-          </div>
-          <div class="proj-metric">87% test accuracy</div>
-          <h3 class="proj-title">Phone Price Prediction Dashboard</h3>
-          <p class="proj-desc">Streamlit ML dashboard predicting mobile prices from hardware specs. KNN and SVM models on real dataset with interactive histograms, distributions, and model comparison views.</p>
-          <div class="proj-tags">
-            <span class="pill">Python</span><span class="pill">Streamlit</span><span class="pill">Scikit-learn</span><span class="pill">Pandas</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://github.com/AsadAkmal11/Phone-Dash" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
-          </div>
-        </article>
-
-        <!-- Smart EcoCity -->
-        <article class="proj-card">
-          <div class="proj-visual">
-            <svg width="200" height="100" viewBox="0 0 200 100" fill="none" aria-hidden="true">
-              <rect x="30" y="50" width="30" height="35" rx="2" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <rect x="36" y="58" width="6" height="8" fill="#06b6d4" opacity="0.5"/>
-              <rect x="48" y="58" width="6" height="8" fill="#06b6d4" opacity="0.5"/>
-              <rect x="36" y="72" width="6" height="8" fill="#06b6d4" opacity="0.5"/>
-              <rect x="48" y="72" width="6" height="8" fill="#06b6d4" opacity="0.5"/>
-              <rect x="75" y="40" width="35" height="45" rx="2" stroke="#06b6d4" stroke-width="1" fill="#111118"/>
-              <rect x="82" y="48" width="7" height="9" fill="#7c3aed" opacity="0.5"/>
-              <rect x="96" y="48" width="7" height="9" fill="#7c3aed" opacity="0.5"/>
-              <rect x="82" y="64" width="7" height="9" fill="#7c3aed" opacity="0.5"/>
-              <rect x="96" y="64" width="7" height="9" fill="#7c3aed" opacity="0.5"/>
-              <rect x="125" y="55" width="28" height="30" rx="2" stroke="#7c3aed" stroke-width="1" fill="#111118"/>
-              <circle cx="155" cy="72" r="12" stroke="#06b6d4" stroke-width="1" fill="none"/>
-              <text x="155" y="76" font-family="JetBrains Mono, monospace" font-size="7" fill="#06b6d4" text-anchor="middle">P</text>
-              <line x1="20" y1="85" x2="180" y2="85" stroke="#5c5a6a" stroke-width="0.5"/>
-              <rect x="50" y="82" width="12" height="3" rx="1" fill="#7c3aed" opacity="0.6"/>
-              <rect x="100" y="82" width="12" height="3" rx="1" fill="#06b6d4" opacity="0.6"/>
-            </svg>
-          </div>
-          <div class="proj-metric">Full OOP simulation</div>
-          <h3 class="proj-title">Smart EcoCity Simulation</h3>
-          <p class="proj-desc">C++ team project simulating smart traffic and parking management systems. Built with inheritance, polymorphism, templates, exception handling, and persistent file I/O.</p>
-          <div class="proj-tags">
-            <span class="pill">C++</span><span class="pill">OOP</span><span class="pill">Simulation</span><span class="pill">Systems</span>
-          </div>
-          <div class="proj-actions">
-            <a href="https://github.com/Sel68/Smart-EcoCity-Simulation" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
-          </div>
-        </article>
+    <!-- End-to-End MLOps Pipeline -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">60% faster deployment</div>
+        <h3 class="proj-name">End-to-End MLOps Pipeline</h3>
       </div>
+      <div>
+        <p class="proj-desc">Full crop/agri predictive analytics pipeline with four FastAPI inference endpoints, Prefect-orchestrated training, DeepChecks validation, Docker Compose deployment, and GitHub Actions CI/CD with lint, test, and image push.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span>
+          <span class="tag">React + Vite</span><span class="tag">Docker</span>
+          <span class="tag">Prefect</span><span class="tag">DeepChecks</span>
+          <span class="tag">GitHub Actions</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://github.com/ZawarFahim/End-to-End-MLOps-Pipeline-for-Predictive-Analytics-Simulation-System-for-Decision-Making" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
+        </div>
+      </div>
+    </article>
 
-      <div class="earlier-toggle">
-        <button class="earlier-btn" id="earlierBtn" aria-expanded="false">Earlier Work</button>
-        <div class="earlier-work" id="earlierWork">
-          <article class="proj-card">
+    <!-- Rang Adda -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">Flutter mobile game &middot; 3-tier bot AI</div>
+        <h3 class="proj-name">Rang Adda &mdash; Digital Pakistani Card Games</h3>
+      </div>
+      <div>
+        <p class="proj-desc">Co-developed a Flutter app digitizing popular Pakistani card games (Thulla, Rang, Bluff). Features a three-tier bot AI combining Perfect Information Monte Carlo (PIMC) search for trick-taking and Bayesian reasoning for Bluff, deployed via Firebase Hosting.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Firebase</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://rangadda-57efc.web.app/" target="_blank" rel="noopener noreferrer" class="p-btn">Live Demo</a>
+          <a href="https://github.com/marbo786/Rang_Adda" target="_blank" rel="noopener noreferrer" class="p-btn dim">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Personal Workspace Dashboard -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">OAuth2 productivity dashboard</div>
+        <h3 class="proj-name">Personal Workspace Dashboard</h3>
+      </div>
+      <div>
+        <p class="proj-desc">Full-stack productivity dashboard integrating GitHub and Gmail via OAuth2, with Fernet-encrypted token storage, persistent session auth, and Supabase PostgreSQL backend migrated from SQLite for Vercel deployment. Includes dark/light theming and a dedicated landing page.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">FastAPI</span><span class="tag">React</span>
+          <span class="tag">Supabase (PostgreSQL)</span><span class="tag">OAuth2</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://personal-workspace-bay.vercel.app/" target="_blank" rel="noopener noreferrer" class="p-btn">Live Demo</a>
+          <a href="https://github.com/huzaifaarif-7/personal-workspace" target="_blank" rel="noopener noreferrer" class="p-btn dim">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ATTENDIFY -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">200+ users &middot; 70% time saved</div>
+        <h3 class="proj-name">ATTENDIFY &mdash; Smart Attendance System</h3>
+      </div>
+      <div>
+        <p class="proj-desc">University attendance platform with role-based access for Admin, Faculty, and Students. ERP panel with bulk Excel import, Firebase sync, audit logs, and bcrypt-secured PostgreSQL backend.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">Tkinter</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Firebase</span>
+          <span class="tag">Pandas</span><span class="tag">bcrypt</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://github.com/ZawarFahim/Smart-Attendance-System" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- PSX Trade Hub -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">5 terminal features shipped</div>
+        <h3 class="proj-name">PSX Trade Hub</h3>
+      </div>
+      <div>
+        <p class="proj-desc">Desktop-style stock trading platform with CSV upload, market watch, and portfolio management. Dynamic screen rendering modelled on real financial terminals from the DirectFN internship.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">JavaScript</span><span class="tag">React</span>
+          <span class="tag">CSV Parsing</span><span class="tag">Finance</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://github.com/AsadAkmal11/psxtradehub" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Phone Price Prediction -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">87% test accuracy</div>
+        <h3 class="proj-name">Phone Price Prediction Dashboard</h3>
+      </div>
+      <div>
+        <p class="proj-desc">Streamlit ML dashboard predicting mobile prices from hardware specs. KNN and SVM models on real dataset with interactive histograms, distributions, and model comparison views.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">Streamlit</span>
+          <span class="tag">Scikit-learn</span><span class="tag">Pandas</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://github.com/AsadAkmal11/Phone-Dash" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Smart EcoCity -->
+    <article class="proj-row">
+      <div>
+        <div class="proj-metric">Full OOP simulation</div>
+        <h3 class="proj-name">Smart EcoCity Simulation</h3>
+      </div>
+      <div>
+        <p class="proj-desc">C++ team project simulating smart traffic and parking management systems. Built with inheritance, polymorphism, templates, exception handling, and persistent file I/O.</p>
+      </div>
+      <div class="proj-right">
+        <div class="proj-tags">
+          <span class="tag">C++</span><span class="tag">OOP</span>
+          <span class="tag">Simulation</span><span class="tag">Systems</span>
+        </div>
+        <div class="proj-actions">
+          <a href="https://github.com/Sel68/Smart-EcoCity-Simulation" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Earlier Work Toggle -->
+    <div class="earlier-toggle-area">
+      <button class="earlier-btn" id="earlierBtn" aria-expanded="false">Earlier Work</button>
+      <div class="earlier-rows" id="earlierRows">
+        <article class="proj-row">
+          <div>
             <div class="proj-metric">Full-stack delivery</div>
-            <h3 class="proj-title">Food Delivery App — Quick Pizza Junction</h3>
+            <h3 class="proj-name">Food Delivery App &mdash; Quick Pizza Junction</h3>
+          </div>
+          <div>
             <p class="proj-desc">Food delivery application with order management and customer interface, paired with a business plan targeting university students with a fast-service launch model.</p>
+          </div>
+          <div class="proj-right">
             <div class="proj-tags">
-              <span class="pill">Full Stack</span><span class="pill">OOP</span><span class="pill">Business Design</span>
+              <span class="tag">Full Stack</span><span class="tag">OOP</span><span class="tag">Business Design</span>
             </div>
             <div class="proj-actions">
-              <a href="https://github.com/AsadAkmal11" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
+              <a href="https://github.com/AsadAkmal11" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
             </div>
-          </article>
-          <article class="proj-card">
+          </div>
+        </article>
+        <article class="proj-row">
+          <div>
             <div class="proj-metric">Secure auth flow</div>
-            <h3 class="proj-title">Payment Gateway Auth System</h3>
+            <h3 class="proj-name">Payment Gateway Auth System</h3>
+          </div>
+          <div>
             <p class="proj-desc">Payment gateway web app with transaction flow simulation, form validation, and responsive cross-device UI. Includes personalised auth and session handling.</p>
+          </div>
+          <div class="proj-right">
             <div class="proj-tags">
-              <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">Responsive</span>
+              <span class="tag">HTML</span><span class="tag">CSS</span>
+              <span class="tag">JavaScript</span><span class="tag">Responsive</span>
             </div>
             <div class="proj-actions">
-              <a href="https://github.com/AsadAkmal11/Payment-Gateway" target="_blank" rel="noopener noreferrer" class="proj-btn primary">GitHub</a>
+              <a href="https://github.com/AsadAkmal11/Payment-Gateway" target="_blank" rel="noopener noreferrer" class="p-btn">GitHub</a>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
     </div>
+
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-inner reveal">
-    <p class="section-label">Work History</p>
-    <h2 class="section-title">Experience</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <p class="tl-dates">Jun 2026 – Present</p>
-        <h3 class="tl-company">Internetworks — IT Solutions</h3>
-        <p class="tl-role">Intern Full Stack Developer</p>
-        <ul>
-          <li>Built IVY, an AI-powered chatbot (Python, Flask, OpenRouter/Google Gemma) featuring a conversational lead-capture state machine, automated SMTP email delivery, and JSONL-based conversation logging; led a full security audit of the system.</li>
-          <li>Extended IVY with voice interaction by integrating OpenAI Whisper for speech-to-text and validating local whisper.cpp performance on Windows.</li>
-          <li>Hardened backend security on a client VR language-learning platform (React, Supabase) — implementing Row-Level Security triggers, cryptographically secure class-code generation, and migration-based paywall enforcement.</li>
-          <li>Improved payment and progress-tracking reliability by wiring up Stripe webhooks with idempotency handling and a Supabase RPC merge function, alongside resolving cross-browser and language-routing bugs.</li>
-        </ul>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <p class="tl-dates">Jan 2026 – Jun 2026</p>
-        <h3 class="tl-company">AIESEC</h3>
-        <p class="tl-role">Team Lead — CRM &amp; Alumni Manager</p>
-        <ul>
-          <li>Grew alumni re-engagement by 25% across 3 project cycles by redesigning outreach cadences.</li>
-          <li>Improved CRM data quality by 40% by authoring a standardised data-entry checklist adopted chapter-wide.</li>
-        </ul>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <p class="tl-dates">Jun – Aug 2025</p>
-        <h3 class="tl-company">DirectFN</h3>
-        <p class="tl-role">Intern — Software / Data</p>
-        <ul>
-          <li>Shipped PSX Trade Hub in 6 weeks — a fully functional desktop-style trading platform built independently by internship end.</li>
-          <li>Designed 3 automated market-data pipeline workflows reducing manual handling by ~30%.</li>
-        </ul>
-      </div>
+  <div class="sec-divider inner"><span class="sec-lbl">03 &middot; Experience</span></div>
+  <div class="inner exp-body">
+
+    <div class="exp-entry">
+      <div class="exp-date">[JUN 2026 &rarr; PRESENT]</div>
+      <div class="exp-company">Internetworks &mdash; IT Solutions</div>
+      <div class="exp-role">Intern Full Stack Developer</div>
+      <ul class="exp-bullets">
+        <li>Built IVY, an AI-powered chatbot (Python, Flask, OpenRouter/Google Gemma) featuring a conversational lead-capture state machine, automated SMTP email delivery, and JSONL-based conversation logging; led a full security audit of the system.</li>
+        <li>Extended IVY with voice interaction by integrating OpenAI Whisper for speech-to-text and validating local whisper.cpp performance on Windows.</li>
+        <li>Hardened backend security on a client VR language-learning platform (React, Supabase) &mdash; implementing Row-Level Security triggers, cryptographically secure class-code generation, and migration-based paywall enforcement.</li>
+        <li>Improved payment and progress-tracking reliability by wiring up Stripe webhooks with idempotency handling and a Supabase RPC merge function, alongside resolving cross-browser and language-routing bugs.</li>
+      </ul>
     </div>
+
+    <div class="exp-entry">
+      <div class="exp-date">[JAN 2026 &rarr; JUN 2026]</div>
+      <div class="exp-company">AIESEC</div>
+      <div class="exp-role">Team Lead &mdash; CRM &amp; Alumni Manager</div>
+      <ul class="exp-bullets">
+        <li>Grew alumni re-engagement by 25% across 3 project cycles by redesigning outreach cadences.</li>
+        <li>Improved CRM data quality by 40% by authoring a standardised data-entry checklist adopted chapter-wide.</li>
+      </ul>
+    </div>
+
+    <div class="exp-entry">
+      <div class="exp-date">[JUN &rarr; AUG 2025]</div>
+      <div class="exp-company">DirectFN</div>
+      <div class="exp-role">Intern &mdash; Software / Data</div>
+      <ul class="exp-bullets">
+        <li>Shipped PSX Trade Hub in 6 weeks &mdash; a fully functional desktop-style trading platform built independently by internship end.</li>
+        <li>Designed 3 automated market-data pipeline workflows reducing manual handling by ~30%.</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
+<!-- EDUCATION -->
 <section id="education">
-  <div class="section-inner reveal">
-    <p class="section-label">Academic</p>
-    <h2 class="section-title">Education</h2>
-    <div class="edu-card">
-      <p class="edu-degree">B.S. Artificial Intelligence</p>
-      <p class="edu-school">GIK Institute (GIKI) · 2024 – 2028</p>
-      <p class="edu-cgpa">CGPA 3.07 / 4.00</p>
+  <div class="sec-divider inner"><span class="sec-lbl">04 &middot; Education</span></div>
+  <div class="inner edu-body">
+    <div class="edu-block">
+      <div class="edu-degree">B.S. Artificial Intelligence</div>
+      <div class="edu-school">GIK Institute (GIKI) &middot; 2024 &ndash; 2028</div>
+      <div class="edu-meta">CGPA 3.07 / 4.00</div>
       <div class="edu-courses">
-        <span class="pill">ML</span><span class="pill">AI</span><span class="pill">DSA</span>
-        <span class="pill">DBMS</span><span class="pill">Statistics</span><span class="pill">OOP</span>
+        <span class="tag">ML</span><span class="tag">AI</span><span class="tag">DSA</span>
+        <span class="tag">DBMS</span><span class="tag">Statistics</span><span class="tag">OOP</span>
       </div>
-      <p class="edu-note">FSc Pre-Engineering — Government College University, Lahore (2024)</p>
+      <div class="edu-note">FSc Pre-Engineering &mdash; Government College University, Lahore (2024)</div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-  <div class="section-inner reveal">
-    <p class="section-label">Get in touch</p>
-    <h2 class="section-title">Let's build something.</h2>
+  <div class="sec-divider inner"><span class="sec-lbl">05 &middot; Contact</span></div>
+  <div class="inner contact-body">
     <div class="contact-grid">
       <div>
-        <p class="contact-text">I'm open to AI/ML engineering roles, SWE positions, and interesting internships — in Lahore or remote.</p>
+        <p class="contact-blurb">I&rsquo;m open to AI/ML engineering roles, SWE positions, and interesting internships &mdash; in Lahore or remote. Get in touch.</p>
         <div class="social-row">
           <a href="https://github.com/AsadAkmal11" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
             <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
@@ -1129,229 +837,78 @@ footer p {
           </a>
         </div>
       </div>
-      <form class="contact-form" onsubmit="handleFormSubmit(event)">
+      <form class="contact-form" id="contactForm" onsubmit="handleForm(event)">
         <div class="form-group">
-          <input type="text" id="nameInput" placeholder="// your name" required/>
+          <input type="text" id="nameInput" placeholder="// your name" autocomplete="name" required/>
         </div>
         <div class="form-group">
-          <input type="email" id="emailInput" placeholder="// your email" required/>
+          <input type="email" id="emailInput" placeholder="// your email" autocomplete="email" required/>
         </div>
         <div class="form-group">
           <textarea id="messageInput" placeholder="// your message" required></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message</button>
-        <p class="form-msg" id="formMsg">Message sent — I'll be in touch soon.</p>
+        <p class="form-msg" id="formMsg" role="status">Message received &mdash; I&rsquo;ll be in touch soon.</p>
       </form>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Muhammad Asad Akmal · Lahore, Pakistan · 2026</p>
+  <div class="footer-inner">
+    <p>Muhammad Asad Akmal &middot; Lahore, Pakistan &middot; 2026</p>
+    <p>B.S. AI @ GIKI &middot; Systems Builder</p>
+  </div>
 </footer>
 
 <script>
-/* Nav */
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  hamburger.classList.toggle('open');
+/* Nav hamburger */
+const hamburger = document.getElementById("hamburger");
+const navLinks  = document.getElementById("navLinks");
+hamburger.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  hamburger.classList.toggle("open", open);
+  hamburger.setAttribute("aria-expanded", String(open));
 });
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    hamburger.classList.remove('open');
+document.querySelectorAll(".nav-links a").forEach(a => {
+  a.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
   });
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href === '#') return;
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
-
-/* Active nav */
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+/* Active nav highlighting */
+const sectionIds = ["stack","projects","experience","education","contact"];
+const navItems = document.querySelectorAll(".nav-links a");
+window.addEventListener("scroll", () => {
+  let current = "";
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 90) current = id;
   });
   navItems.forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    a.classList.toggle("active", a.getAttribute("href") === "#" + current);
   });
-});
-
-/* Scroll reveal */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}, { passive: true });
 
 /* Earlier work toggle */
-document.getElementById('earlierBtn').addEventListener('click', function() {
-  const panel = document.getElementById('earlierWork');
-  const open = panel.classList.toggle('open');
-  this.setAttribute('aria-expanded', open);
-  this.textContent = open ? 'Hide Earlier Work' : 'Earlier Work';
+document.getElementById("earlierBtn").addEventListener("click", function() {
+  const rows = document.getElementById("earlierRows");
+  const open = rows.classList.toggle("open");
+  this.setAttribute("aria-expanded", String(open));
+  this.textContent = open ? "Hide Earlier Work" : "Earlier Work";
 });
 
-/* Form */
-function handleFormSubmit(e) {
+/* Contact form */
+function handleForm(e) {
   e.preventDefault();
-  const msg = document.getElementById('formMsg');
-  msg.style.display = 'block';
+  const msg = document.getElementById("formMsg");
+  msg.style.display = "block";
   e.target.reset();
-  setTimeout(() => { msg.style.display = 'none'; }, 4000);
+  setTimeout(() => { msg.style.display = "none"; }, 5000);
 }
-
-/* Neural network canvas */
-(function initNeural() {
-  const canvas = document.getElementById('neural-canvas');
-  const ctx = canvas.getContext('2d');
-  const NODE_COUNT = 30;
-  const CONNECT_DIST = 140;
-  let nodes = [];
-  let w, h;
-
-  function resize() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    w = canvas.width = rect.width;
-    h = canvas.height = rect.height;
-  }
-
-  function initNodes() {
-    nodes = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        phase: Math.random() * Math.PI * 2
-      });
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    const t = Date.now() * 0.001;
-
-    nodes.forEach(n => {
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < 0 || n.x > w) n.vx *= -1;
-      if (n.y < 0 || n.y > h) n.vy *= -1;
-    });
-
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT_DIST) {
-          const fade = (1 - dist / CONNECT_DIST) * (0.5 + 0.5 * Math.sin(t + nodes[i].phase));
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.strokeStyle = 'rgba(124, 58, 237, ' + (fade * 0.08) + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    nodes.forEach(n => {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(124, 58, 237, 0.08)';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  resize();
-  initNodes();
-  window.addEventListener('resize', () => { resize(); initNodes(); });
-  draw();
-})();
-
-/* Terminal typewriter */
-(function initTypewriter() {
-  const lines = [
-    {
-      text: '> training model... accuracy: 94.2%',
-      html: '<span class="prompt">&gt;</span> training model... <span class="ok">accuracy: 94.2%</span>',
-      pause: 1200
-    },
-    {
-      text: '> deploying to FastAPI... status: 200 OK',
-      html: '<span class="prompt">&gt;</span> deploying to FastAPI... <span class="ok">status: 200 OK</span>',
-      pause: 1200
-    },
-    {
-      text: '> pipeline: prefect flow complete \u2713',
-      html: '<span class="prompt">&gt;</span> pipeline: prefect flow complete <span class="check">\u2713</span>',
-      pause: 1200
-    },
-    {
-      text: '> git push \u2192 CI/CD: all checks passed \u2713',
-      html: '<span class="prompt">&gt;</span> git push \u2192 CI/CD: all checks passed <span class="check">\u2713</span>',
-      pause: 2000
-    }
-  ];
-  const CHAR_DELAY = 60;
-  const LINE_GAP = 400;
-  const els = [
-    document.getElementById('term-line-0'),
-    document.getElementById('term-line-1'),
-    document.getElementById('term-line-2'),
-    document.getElementById('term-line-3')
-  ];
-
-  function typeLine(el, line, cb) {
-    let i = 0;
-    function step() {
-      if (i >= line.text.length) {
-        el.innerHTML = line.html;
-        cb();
-        return;
-      }
-      i++;
-      el.innerHTML = line.text.slice(0, i) + '<span class="terminal-cursor"></span>';
-      setTimeout(step, CHAR_DELAY);
-    }
-    step();
-  }
-
-  function wait(ms) {
-    return new Promise(r => setTimeout(r, ms));
-  }
-
-  async function runLoop() {
-    while (true) {
-      els.forEach(el => { el.innerHTML = ''; });
-      for (let n = 0; n < lines.length; n++) {
-        await new Promise(resolve => typeLine(els[n], lines[n], resolve));
-        await wait(lines[n].pause);
-        if (n < lines.length - 1) await wait(LINE_GAP);
-      }
-      els[3].innerHTML = lines[3].html + '<span class="terminal-cursor"></span>';
-      await wait(2000);
-    }
-  }
-
-  runLoop();
-})();
 </script>
+
 </body>
 </html>
